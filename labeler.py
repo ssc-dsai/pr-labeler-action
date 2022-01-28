@@ -18,7 +18,7 @@ def main():
 
     # Verify COMMAND
     if COMMAND == "ADD":
-        label = Label(color=LABEL_COLOUR, name=LABEL_NAME)
+        label = Label.Label(color=LABEL_COLOUR, name=LABEL_NAME)
         pull_request.set_labels(label)
     elif COMMAND == "REMOVE":
         pull_request.delete_labels()
