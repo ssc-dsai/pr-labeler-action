@@ -1,0 +1,46 @@
+name: Pull Request Labeler
+description: A Github action to label pull requests
+
+inputs:
+  github-token:
+    description: Your Github Token
+    required: true
+  pull-request-id:
+    description: The ID Number or yout pull request
+    required: true
+  command:
+    description: The ADD or REMOVE label command
+    required: true
+  label-name:
+    description: The label name that you want to display
+    required: true
+  label-colour:
+    description: the label colour that you want to display
+    required: true
+    
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+    
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.6
+
+    - name: Install Dependencies
+      run: pip install PyGithub
+      shell: bash
+
+    - name: Labeler
+      id: labeler
+      run: |
+        python labeler.py
+      shell: bash
+      env:
+        GITHUB_TOKEN: ${{ inputs.github-token }}
+        PULL_REQUEST_ID: ${{ inputs.pull-request-id }}
+        COMMAND:  ${{ inputs.command }}
+        LABEL_NAME: ${{ inputs.label-name }}
+        LABEL_COLOUR: ${{ inputs.label-colour }}
