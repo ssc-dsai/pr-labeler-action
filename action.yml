@@ -17,7 +17,7 @@ inputs:
   label-colour:
     description: the label colour that you want to display
     required: true
-    
+
 runs:
   using: "composite"
   steps:
@@ -32,11 +32,10 @@ runs:
     - name: Install Dependencies
       run: pip install PyGithub
       shell: bash
-
+      
     - name: Labeler
-      id: labeler
       run: |
-        python labeler.py
+        python ${{ github.action_path }}/labeler.py
       shell: bash
       env:
         GITHUB_TOKEN: ${{ inputs.github-token }}
