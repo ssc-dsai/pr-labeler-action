@@ -1,5 +1,5 @@
 from tkinter import Label
-from github import Github
+from github import Github, Label
 import os
 
 
@@ -18,7 +18,7 @@ def main():
 
     # Verify COMMAND
     if COMMAND == "ADD":
-        label = github.Label(color=LABEL_COLOUR, name=LABEL_NAME)
+        label = Label(color=LABEL_COLOUR, name=LABEL_NAME)
         pull_request.set_labels(label)
     elif COMMAND == "REMOVE":
         pull_request.delete_labels()
