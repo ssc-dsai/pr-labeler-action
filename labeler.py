@@ -1,3 +1,4 @@
+from tkinter import Label
 from github import Github
 import os
 
@@ -11,17 +12,22 @@ LABEL_NAME      = os.getenv('LABEL_NAME')
 LABEL_COLOUR    = os.getenv('LABEL_COLOUR')
 
 def main():
-    github = Github(GITHUB_TOKEN)
     print(REPO_NAME)
-    repo = github.get_repo(REPO_NAME)
-    pull_request = repo.get_pull(PULL_REQUEST_ID)
+    print(PULL_REQUEST_ID)
+    print(COMMAND)
+    print(LABEL_NAME)
+    print(LABEL_COLOUR)
+    # github = Github(GITHUB_TOKEN)
+    # print(REPO_NAME)
+    # repo = github.get_repo(REPO_NAME)
+    # pull_request = repo.get_pull(PULL_REQUEST_ID)
 
-    # Verify COMMAND
-    if COMMAND == "ADD":
-        label = github.Label(color=LABEL_COLOUR, name=LABEL_NAME)
-        pull_request.set_labels(label)
-    elif COMMAND == "REMOVE":
-        pull_request.delete_labels()
+    # # Verify COMMAND
+    # if COMMAND == "ADD":
+    #     label = github.Label(color=LABEL_COLOUR, name=LABEL_NAME)
+    #     pull_request.set_labels(label)
+    # elif COMMAND == "REMOVE":
+    #     pull_request.delete_labels()
 
 if __name__ == "__main__":
     main()
