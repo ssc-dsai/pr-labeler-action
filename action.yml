@@ -5,6 +5,9 @@ inputs:
   github-token:
     description: Your Github Token
     required: true
+  repo-name:
+    description: The repository name used
+    required: true
   pull-request-id:
     description: The ID Number or yout pull request
     required: true
@@ -32,13 +35,14 @@ runs:
     - name: Install Dependencies
       run: pip install PyGithub
       shell: bash
-      
+
     - name: Labeler
       run: |
         python ${{ github.action_path }}/labeler.py
       shell: bash
       env:
         GITHUB_TOKEN: ${{ inputs.github-token }}
+        REPO_NAME: ${{ inputs.repo-name }}
         PULL_REQUEST_ID: ${{ inputs.pull-request-id }}
         COMMAND:  ${{ inputs.command }}
         LABEL_NAME: ${{ inputs.label-name }}
