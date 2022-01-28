@@ -13,6 +13,7 @@ LABEL_COLOUR    = os.getenv('LABEL_COLOUR')
 def main():
     github = Github(GITHUB_TOKEN)
     repo = github.get_repo(REPO_NAME)
+    print(REPO_NAME)
     pull_request = repo.get_pull(PULL_REQUEST_ID)
 
     # Verify COMMAND
